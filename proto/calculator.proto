@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option php_namespace = "App\\Calculator";
+option php_metadata_namespace = "App\\GPBMetadata";
+
+package app;
+
+message Sum {
+    int32 a = 1;
+    int32 b = 2;
+}
+
+message Result {
+    int32 result = 1;
+}
+
+service Calculator {
+    rpc Sum (app.Sum) returns (app.Result) {
+    }
+}
