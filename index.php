@@ -7,15 +7,13 @@ require 'vendor/autoload.php';
 $client = new CalculatorClient(
     'localhost:50051',
     [
-        'credentials' => \Grpc\ChannelCredentials::createSsl(file_get_contents("app.crt")),
+        'credentials' => \Grpc\ChannelCredentials::createInsecure(),
     ]
 );
-
-[$result, $mt] = $client->Sum(
-    new \App\Calculator\Sum([
-        'a' => 1,
-        'b' => 2
-    ])
-)->wait();
-
+$sum = new \App\Calculator\Sum([
+    'a' => 1,
+    'b' => 2
+]);
+[$result, $mt] = $client->Sum($sum)->wait();
+// var_dump($result, $mt);
 print_r($result->getResult());

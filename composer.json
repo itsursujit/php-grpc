@@ -2,7 +2,8 @@
     "name": "sujit/php-grpc",
     "require": {
         "grpc/grpc": "^1.27",
-        "google/protobuf": "^3.11"
+        "google/protobuf": "^3.11",
+        "ext-grpc": "*"
     },
     "autoload": {
         "psr-4": {
