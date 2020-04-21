@@ -10,10 +10,11 @@ $client = new CalculatorClient(
         'credentials' => \Grpc\ChannelCredentials::createInsecure(),
     ]
 );
-$sum = new \App\Calculator\Sum([
-    'a' => 1,
-    'b' => 2
-]);
-[$result, $mt] = $client->Sum($sum)->wait();
-// var_dump($result, $mt);
-print_r($result->getResult());
+for($i = 0; $i < 10000; $i++)
+{
+    $sum = new \App\Calculator\Sum([
+        'a' => $i,
+        'b' => $i + 1
+    ]);
+    [$result, $mt] = $client->Sum($sum)->wait();
+}
